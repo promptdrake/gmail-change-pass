@@ -6,7 +6,7 @@ Script ini bertujuan untuk mengubah password akun gmail secara fast dan bisa men
 <b>MEMBUTUHKAN NODEJS YANG TERINSTALL DI PC KAMU, CARI NODEJS DI GOOGLE LALU DOWNLOAD FILE MSI NYA</b>
 
 
-![App Screenshot]([https://github.com/promptdrake/spotify-creator/blob/main/sekrinsut.png?raw=true](https://github.com/promptdrake/gmail-change-pass/blob/main/Luxu.png?raw=true))
+![App Screenshot](https://github.com/promptdrake/gmail-change-pass/blob/main/Luxu.png?raw=true)
 
 
 ## FAQ
