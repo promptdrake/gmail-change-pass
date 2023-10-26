@@ -15,7 +15,7 @@ const userAgentsList = Array.from({ length: 10 }, () => new userAgents());
   puppeteer.use(StealthPlugin());
   async function createSpotifyAccount(email) {
     const browser = await puppeteer.launch({
-      headless: "new",
+      headless: false,
       args: [
         `--user-agent=${userAgentsList[Math.floor(Math.random() * userAgentsList.length)].toString()}`,
         '--disable-web-security',
@@ -43,7 +43,15 @@ const userAgentsList = Array.from({ length: 10 }, () => new userAgents());
     await page.waitForTimeout(2000);
     await page.waitForSelector('button[data-idom-class="nCP5yc AjY5Oe DuMIQc LQeN7 qIypjc TrZEUc lw1w4b"]');
 await page.click('button[data-idom-class="nCP5yc AjY5Oe DuMIQc LQeN7 qIypjc TrZEUc lw1w4b"]');
-await page.waitForTimeout(3800);
+await page.waitForTimeout(2000);
+if (page.url().includes('https://accounts.google.com/signin/v2/challenge')) {
+  await page.waitForTimeout(3000);
+  const now = new Date();
+  const currentDate = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}_${String(now.getHours()).padStart(2, '0')}-${String(now.getMinutes()).padStart(2, '0')}-${String(now.getSeconds()).padStart(2, '0')}`;
+  await page.screenshot({ path: `${email}_${currentDate}_otp.jpg` });
+  console.log(chalk.red(`${email} Have number verification so bot skipping this mail only and saved the screenshot to ${email}_${currentDate}_otp.jpg`));
+}
+else {
 await page.waitForSelector('input[type="password"]');
 await page.waitForTimeout(1000);
 await page.type('input[type="password"]', config.default_password);
@@ -51,7 +59,14 @@ console.log(chalk.green('[Server] Inputing Password For\n> ' + email))
 await page.waitForTimeout(2000);
 await page.waitForSelector('button[data-idom-class="nCP5yc AjY5Oe DuMIQc LQeN7 qIypjc TrZEUc lw1w4b"]');
 await page.click('button[data-idom-class="nCP5yc AjY5Oe DuMIQc LQeN7 qIypjc TrZEUc lw1w4b"]');
-
+await page.waitForTimeout(2000);
+if (page.url().includes('https://accounts.google.com/signin/v2/challenge')) {
+  const now = new Date();
+  const currentDate = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}_${String(now.getHours()).padStart(2, '0')}-${String(now.getMinutes()).padStart(2, '0')}-${String(now.getSeconds()).padStart(2, '0')}`;
+  await page.screenshot({ path: `${email}_${currentDate}_otp.jpg` });
+  console.log(chalk.red(`${email} Have number verification so bot skipping this mail only and saved the screenshot to ${email}_${currentDate}_otp.jpg`));
+}
+else {
 await page.waitForTimeout(4000);
 await page.waitForSelector('a[data-rid="401"]');
 await page.click('a[data-rid="401"]');
@@ -68,7 +83,9 @@ console.log(chalk.green('[Server] ' + config.default_password + ' to ' +config.n
 await page.waitForTimeout(2000);
 await page.keyboard.press('Enter');
 await page.waitForTimeout(4000);
-console.log(chalk.blue('[Server] ') + `Queued Email From ` + email + ' Succsesfully')
+console.log(chalk.blue('[Server] ') + `Queued Email From ` + email + ' Succsesfully');
+}
+}
 await browser.close()
   }
   async function processEmails() {
