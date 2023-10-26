@@ -32,8 +32,8 @@ $ node index.js
 | :-------- | ------------------------- |
 | Less lag because in nodejs | ✅ |
 | Bulk Mail auto change | ✅ |
-| Banned Gmail + otp detection (Paid Feature Soon) | ❌ |
-| Banned Gmail + otp detection Auto screenshot and saved to folder (Paid Feature Soon) | ❌ |
+| Banned Gmail + otp detection | ✅ |
+| Banned Gmail + otp detection Auto screenshot and saved to folder | ✅ |
 
 ## Authors
 
