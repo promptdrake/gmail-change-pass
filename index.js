@@ -43,6 +43,7 @@ async function askUserCount() {
       askUserCount();
     }, 1000);
     }
+rl.close();
   });
 }
 
