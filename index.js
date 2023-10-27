@@ -43,20 +43,20 @@ const userAgentsList = Array.from({ length: 10 }, () => new userAgents());
     await page.waitForTimeout(2000);
     await page.waitForSelector('button[data-idom-class="nCP5yc AjY5Oe DuMIQc LQeN7 qIypjc TrZEUc lw1w4b"]');
 await page.click('button[data-idom-class="nCP5yc AjY5Oe DuMIQc LQeN7 qIypjc TrZEUc lw1w4b"]');
-await page.waitForTimeout(2000);
+await page.waitForTimeout(3900);
 if (page.url().includes('https://accounts.google.com/signin/v2/challenge')) {
-  await page.waitForTimeout(3000);
+  await page.waitForTimeout(3500);
   const now = new Date();
   const currentDate = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}_${String(now.getHours()).padStart(2, '0')}-${String(now.getMinutes()).padStart(2, '0')}-${String(now.getSeconds()).padStart(2, '0')}`;
   await page.screenshot({ path: `${email}_${currentDate}_otp.jpg` });
   console.log(chalk.red(`${email} Have number verification so bot skipping this mail only and saved the screenshot to ${email}_${currentDate}_otp.jpg`));
 }
 else {
+  await page.waitForTimeout(200);
 await page.waitForSelector('input[type="password"]');
-await page.waitForTimeout(1000);
 await page.type('input[type="password"]', config.default_password);
 console.log(chalk.green('[Server] Inputing Password For\n> ' + email))
-await page.waitForTimeout(2000);
+await page.waitForTimeout(1000);
 await page.waitForSelector('button[data-idom-class="nCP5yc AjY5Oe DuMIQc LQeN7 qIypjc TrZEUc lw1w4b"]');
 await page.click('button[data-idom-class="nCP5yc AjY5Oe DuMIQc LQeN7 qIypjc TrZEUc lw1w4b"]');
 await page.waitForTimeout(2000);
