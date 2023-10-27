@@ -34,6 +34,8 @@ $ node index.js
 | Bulk Mail auto change | ✅ |
 | Banned Gmail + otp detection | ✅ |
 | Banned Gmail + otp detection Auto screenshot and saved to folder | ✅ |
+| Auto Delete Email otp on email.txt | ✅ |
+| Auto check Gmail Banned or not | ✅ |
 
 ## Authors
 
